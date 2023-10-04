@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +20,10 @@ public class Task {
     private String tittle;
     @Column(name = "descripcion", nullable = false, length = 250)
     private String description;
+    @Column(name = "fecha_inicio", nullable = false)
+    private LocalDate startDate;
+    @Column(name = "fecha_termino", nullable = false)
+    private LocalDate endDate;
     @Column(name = "fecha_creacion", nullable = false)
-    private LocalDateTime date;
+    private LocalDateTime creationDate;
 }

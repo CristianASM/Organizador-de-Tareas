@@ -21,9 +21,10 @@
             <thead>
             <tr>
                 <th scope="col" class="col-1">N°</th>
-                <th scope="col" class="col-2">Título</th>
-                <th scope="col" class="col-5">Descripción</th>
-                <th scope="col" class="col-2">Fecha de creación</th>
+                <th scope="col" class="col-1">Título</th>
+                <th scope="col" class="col-4">Descripción</th>
+                <th scope="col" class="col-2">Fecha de inicio</th>
+                <th scope="col" class="col-2">Fecha de entrega</th>
                 <th scope="col" class="col-2 text-center">Acciones</th>
             </tr>
             </thead>
@@ -32,7 +33,8 @@
                 <td th:text="${task.id}">ID</td>
                 <td th:text="${task.tittle}">Tittle</td>
                 <td th:text="${task.description}">Description</td>
-                <td th:text="${task.date}">Fecha</td>
+                <td th:text="${#temporals.format(task.startDate, 'dd-MM-yyyy')}">Fecha de inicio</td>
+                <td th:text="${#temporals.format(task.endDate, 'dd-MM-yyyy')}">Fecha de entrega</td>
                 <td class="text-center">
                     <a th:href="@{/edit/{id}(id=${task.id})}" class="btn btn-warning">Editar</a>
                     <a th:href="@{/delete/{id}(id=${task.id})}" class="btn btn-danger">Eliminar</a>

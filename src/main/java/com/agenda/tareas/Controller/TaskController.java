@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -30,7 +31,7 @@ public class TaskController {
     }
     @PostMapping("/task")
     public String task(@ModelAttribute("newTask") Task task){
-        task.setDate(LocalDateTime.now());
+        task.setCreationDate(LocalDateTime.now());
         taskService.saveTask(task);
         return "redirect:/";
     }
@@ -44,7 +45,9 @@ public class TaskController {
         Task editTask = taskService.getTaskById(id);
         editTask.setTittle(task.getTittle());
         editTask.setDescription(task.getDescription());
-        editTask.setDate(LocalDateTime.now());
+        editTask.setStartDate(task.getStartDate());
+        editTask.setEndDate(task.getEndDate());
+        editTask.setCreationDate(LocalDateTime.now());
         taskService.updateTask(editTask);
         return "redirect:/";
     }
