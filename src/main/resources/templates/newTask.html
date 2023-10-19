@@ -17,22 +17,18 @@
         <div class="container">
             <h1 class="text-center">Crear Tarea</h1>
             <div>
-                <form th:action="@{/task}" th:object="${newTask}" method="post">
+                <form th:action="@{/tasks/task}" th:object="${newTask}" method="post">
                     <div class="form-group mb-3">
                         <label>Título: </label>
-                        <input type="text" name="tittle" th:field="*{tittle}" class="form-control" placeholder="TITTLE" required>
+                        <input type="text" name="tittle" th:field="*{tittle}" class="form-control" placeholder="Titulo" required>
                     </div>
                     <div class="form-group mb-3">
                         <label>Descripción: </label>
-                        <input type="text" name="description" th:field="*{description}" class="form-control" placeholder="DESCRIPTION" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Fecha de inicio: </label>
-                        <input type="date" name="description" th:field="*{startDate}" class="form-control" required>
+                        <input type="text" name="description" th:field="*{description}" class="form-control" placeholder="Descripcion" required>
                     </div>
                     <div class="form-group mb-3">
                         <label>Fecha de Entrega: </label>
-                        <input type="date" name="description" th:field="*{endDate}" class="form-control" required>
+                        <input type="date" name="endDate" th:field="*{endDate}" class="form-control" required>
                     </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
