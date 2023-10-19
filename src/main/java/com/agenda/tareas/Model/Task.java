@@ -25,8 +25,7 @@ public class Task {
     private LocalDate endDate;
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime creationDate;
-    @JoinColumn(name = "proyecto_id")
     @ManyToOne
-    @JsonBackReference
+    @JoinColumn(name = "proyecto_id")
     private Project project;
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,10 @@ public class Project {
     @Column(name = "titulo", nullable = false, length = 45)
     private String title;
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Task> tasks;
-    
+    private List<Task> tasks = new ArrayList<>();
+
+    public void addTask(Task task) {
+        task.setProject(this);
+        tasks.add(task);
+    }
 }

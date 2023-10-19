@@ -20,7 +20,7 @@
                 <form th:action="@{/tasks/edit/{id}(id=${edit.id})}" method="post" th:object="${edit}"> <!--El edit.id tiene que ser igual al th:object="${edit}"-->
                     <div class="form-group mb-3">
                         <label>Título: </label>
-                        <input type="text" name="tittle" th:field="*{tittle}" class="form-control" placeholder="titulo" required>
+                        <input type="text" name="title" th:field="*{title}" class="form-control" placeholder="titulo" required>
                     </div>
                     <div class="form-group mb-3">
                         <label>Descripción: </label>
