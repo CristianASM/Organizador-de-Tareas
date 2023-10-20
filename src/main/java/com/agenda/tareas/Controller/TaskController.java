@@ -20,9 +20,11 @@ public class TaskController {
     @Autowired
     private ProjectServiceImpl projectService;
 
-    @GetMapping("/listTask")
-    public String allTask(Model model){
-        List<Task> tasks = taskService.getAllTask();
+    @GetMapping("/listTask/{projectId}")
+    public String viewTasks(@PathVariable Long projectId, Model model) {
+        Project project = projectService.getProjectById(projectId);
+        List<Task> tasks = taskService.getTasksByProject(project);
+        model.addAttribute("project", project);
         model.addAttribute("tasks", tasks);
         return "listTask";
     }
@@ -43,7 +45,7 @@ public class TaskController {
         }
         task.setCreationDate(LocalDateTime.now());
         taskService.saveTask(task);
-        return "redirect:/tasks/listTask";
+        return "redirect:/tasks/listTask/" + projectId;
     }
     @GetMapping("/edit/{id}")
     public String updateTask(Model model, @PathVariable Long id){
@@ -53,18 +55,23 @@ public class TaskController {
         return "editTask";
     }
     @PostMapping("/edit/{id}")
-    public String saveEditTask(@ModelAttribute("edit") Task task, @PathVariable Long id){
-        Task editTask = taskService.getTaskById(id);
-        editTask.setTitle(task.getTitle());
-        editTask.setDescription(task.getDescription());
-        editTask.setEndDate(task.getEndDate());
-        editTask.setCreationDate(LocalDateTime.now());
-        taskService.updateTask(editTask);
-        return "redirect:/tasks/listTask";
+    public String saveEditTask(@ModelAttribute("edit") Task editedTask, @PathVariable Long id) {
+        Task taskToEdit = taskService.getTaskById(id);
+        if (taskToEdit != null) {
+            taskToEdit.setTitle(editedTask.getTitle());
+            taskToEdit.setDescription(editedTask.getDescription());
+            taskToEdit.setEndDate(editedTask.getEndDate());
+            taskToEdit.setCreationDate(LocalDateTime.now());
+            taskService.updateTask(taskToEdit);
+        }
+        assert taskToEdit != null;
+        return "redirect:/tasks/listTask/" + taskToEdit.getProject().getId();
     }
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable Long id){
+        Task task = taskService.getTaskById(id);
+        long projectId = task.getProject().getId();
         taskService.deleteTask(id);
-        return "redirect:/tasks/listTask";
+        return "redirect:/tasks/listTask/" + projectId;
     }
 }

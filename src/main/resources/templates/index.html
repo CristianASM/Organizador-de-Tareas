@@ -32,7 +32,7 @@
             <td class="text-center">
                 <a th:href="@{/edit/{id}(id=${project.id})}" class="btn btn-warning">Editar</a>
                 <a th:href="@{/delete/{id}(id=${project.id})}" class="btn btn-danger">Eliminar</a>
-                <a th:href="@{/tasks/listTask}" class="btn btn-primary">IR</a>
+                <a th:href="@{/tasks/listTask/{projectId}(projectId=${project.id})}" class="btn btn-primary">IR</a>
             </td>
         </tr>
         </tbody>

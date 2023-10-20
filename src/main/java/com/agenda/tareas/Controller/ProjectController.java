@@ -1,7 +1,9 @@
 package com.agenda.tareas.Controller;
 
 import com.agenda.tareas.Model.Project;
+import com.agenda.tareas.Model.Task;
 import com.agenda.tareas.Service.ProjectServiceImpl;
+import com.agenda.tareas.Service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 
 @Controller
 public class ProjectController {
     @Autowired
     private ProjectServiceImpl projectService;
+    @Autowired
+    private TaskServiceImpl taskService;
 
     @GetMapping("/")
     public String allProjects(Model model){
@@ -47,6 +53,12 @@ public class ProjectController {
     }
     @GetMapping("/delete/{id}")
     public String deleteProject(@PathVariable Long id){
+        Project project = projectService.getProjectById(id);
+        List<Task> tasks = project.getTasks();
+
+        for (Task task : tasks) {
+            taskService.deleteTask(task.getId());
+        }
         projectService.deleteProject(id);
         return "redirect:/";
     }

@@ -1,6 +1,7 @@
 package com.agenda.tareas.Service;
 
 import com.agenda.tareas.Exceptions.TaskNotFoundException;
+import com.agenda.tareas.Model.Project;
 import com.agenda.tareas.Model.Task;
 import com.agenda.tareas.Repository.ITaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class TaskServiceImpl implements ITaskService{
     @Override
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElseThrow(()-> new TaskNotFoundException("Tarea no encontrada"));
+    }
+    public List<Task> getTasksByProject(Project project) {
+        return taskRepository.findByProject(project);
     }
     @Override
     public List<Task> getAllTask() {
