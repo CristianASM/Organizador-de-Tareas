@@ -55,7 +55,7 @@ public class ProjectController {
     public String showDeleteConfirmation(@PathVariable Long id, Model model) {
         Project project = projectService.getProjectById(id);
         model.addAttribute("project", project);
-        return "deleteConfirmation"; // Nombre de la vista
+        return "deleteConfirmation";
     }
     @PostMapping("/delete/{id}")
     public String deleteProject(@PathVariable Long id){

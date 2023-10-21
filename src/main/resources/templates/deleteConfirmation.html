@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Confirmar Eliminación</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <style>
+        body {
+            background-color: #2f363d;
+            color: azure;
+            height: 100vh;
+        }
+    </style>
 </head>
-<body>
-<h1>Confirmación de Eliminación</h1>
-<p>¿Estás seguro de que deseas eliminar el proyecto: <span th:text="${project.title}"></span>?</p>
-<form method="post" th:action="@{/delete/{id}(id=${project.id})}">
-  <button type="submit">Confirmar Eliminación</button>
-  <a href="/">Cancelar</a>
-</form>
+
+<body class="d-flex text-center justify-content-center align-items-center">
+<div >
+  <h1>Confirmación de Eliminación</h1>
+  <p>¿Estás seguro de que deseas eliminar el proyecto: <span th:text="${project.title}"></span>?</p>
+  <form method="post" th:action="@{/delete/{id}(id=${project.id})}">
+    <a class="btn btn-secondary" href="/">Cancelar</a>
+    <button class="btn btn-danger" type="submit">ELIMINAR</button>
+  </form>
+</div>
 </body>
 </html>
 
