@@ -52,6 +52,12 @@ public class ProjectController {
         return "redirect:/";
     }
     @GetMapping("/delete/{id}")
+    public String showDeleteConfirmation(@PathVariable Long id, Model model) {
+        Project project = projectService.getProjectById(id);
+        model.addAttribute("project", project);
+        return "deleteConfirmation"; // Nombre de la vista
+    }
+    @PostMapping("/delete/{id}")
     public String deleteProject(@PathVariable Long id){
         Project project = projectService.getProjectById(id);
         List<Task> tasks = project.getTasks();

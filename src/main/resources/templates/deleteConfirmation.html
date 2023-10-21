@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmar Eliminación</title>
+</head>
+<body>
+<h1>Confirmación de Eliminación</h1>
+<p>¿Estás seguro de que deseas eliminar el proyecto: <span th:text="${project.title}"></span>?</p>
+<form method="post" th:action="@{/delete/{id}(id=${project.id})}">
+  <button type="submit">Confirmar Eliminación</button>
+  <a href="/">Cancelar</a>
+</form>
+</body>
+</html>
+
