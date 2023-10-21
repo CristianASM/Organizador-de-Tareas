@@ -3,7 +3,6 @@ package com.agenda.tareas.Service;
 import com.agenda.tareas.Exceptions.ProjectNotFoundException;
 import com.agenda.tareas.Model.Project;
 import com.agenda.tareas.Repository.IProjectRepository;
-import com.agenda.tareas.Repository.ITaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

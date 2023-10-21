@@ -23,8 +23,7 @@
             <thead>
             <tr>
                 <th scope="col" class="col-1">N°</th>
-                <th scope="col" class="col-1">Título</th>
-                <th scope="col" class="col-4">Descripción</th>
+                <th scope="col" class="col-7">Descripción</th>
                 <th scope="col" class="col-2">Fecha de entrega</th>
                 <th scope="col" class="col-2 text-center">Acciones</th>
             </tr>
@@ -32,7 +31,6 @@
             <tbody>
             <tr th:each="task : ${tasks}">
                 <td th:text="${task.id}">ID</td>
-                <td th:text="${task.title}">Title</td>
                 <td th:text="${task.description}">Description</td>
                 <td th:text="${#temporals.format(task.endDate, 'dd-MM-yyyy')}">Fecha de entrega</td>
                 <td class="text-center">
@@ -42,7 +40,7 @@
             </tr>
             </tbody>
         </table>
-        <a th:href="@{/tasks/newTask}" class="btn btn-primary text-center">Agregar Tarea</a>
+        <a th:href="@{/tasks/newTask(projectId=${project.id})}" class="btn btn-primary text-center">Agregar Tarea</a>
         <a th:href="@{/}" class="btn btn-primary text-center">Volver a Proyectos</a>
     </div>
 </body>

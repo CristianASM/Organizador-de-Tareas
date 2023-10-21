@@ -1,6 +1,5 @@
 package com.agenda.tareas.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +16,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "titulo", nullable = false, length = 45)
-    private String title;
     @Column(name = "descripcion", nullable = false, length = 250)
     private String description;
     @Column(name = "fecha_entrega", nullable = false)

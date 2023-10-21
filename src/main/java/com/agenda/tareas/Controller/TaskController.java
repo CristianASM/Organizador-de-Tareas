@@ -29,8 +29,10 @@ public class TaskController {
         return "listTask";
     }
     @GetMapping("/newTask")
-    public String newTask(Model model){
+    public String newTask(@RequestParam("projectId") Long projectId, Model model){
         Task newTask = new Task();
+        newTask.setProject(new Project());
+        model.addAttribute("currentProject", projectId);
         model.addAttribute("newTask", newTask);
         List<Project> projects = projectService.getAllProjects();
         model.addAttribute("projects", projects);
@@ -58,7 +60,6 @@ public class TaskController {
     public String saveEditTask(@ModelAttribute("edit") Task editedTask, @PathVariable Long id) {
         Task taskToEdit = taskService.getTaskById(id);
         if (taskToEdit != null) {
-            taskToEdit.setTitle(editedTask.getTitle());
             taskToEdit.setDescription(editedTask.getDescription());
             taskToEdit.setEndDate(editedTask.getEndDate());
             taskToEdit.setCreationDate(LocalDateTime.now());
