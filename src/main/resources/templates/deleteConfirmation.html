@@ -10,17 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #28425a;
-            color: rgb(250, 250, 250);
-            font-family: 'Roboto', sans-serif;
-            height: 100vh;
-        }
-    </style>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 
-<body class="d-flex text-center justify-content-center align-items-center">
+<body class="d-flex text-center justify-content-center align-items-center vh-100">
 <div>
     <h1>Confirmación de Eliminación</h1>
     <p>¿Estás seguro de que deseas eliminar el proyecto: <span th:text="${project.title}"></span>?</p>
